@@ -1,0 +1,63 @@
+name: localcast
+description: Secure local-network media sharing and streaming for PC and mobile.
+publish_to: 'none'
+version: 1.0.0+1
+
+# Flutter 2.1.0-12.2.pre bundles an early Dart 2.12 (first stable
+# null-safety release). Everything in this project is written with
+# sound null safety, matching that SDK.
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+  # --- Certificate generation for self-signed HTTPS ---
+  # UNVERIFIED, HIGHEST RISK: I can't confirm the exact basic_utils release
+  # available in this window supports the same generateRsaCsrPem /
+  # generateSelfSignedCertificate API used in cert_service.dart. Early 2021
+  # releases in the 3.x line were the first null-safe ones, as best I can
+  # recall, but treat this constraint as a starting point to adjust after
+  # `flutter pub get`, not a guarantee.
+  basic_utils: '>=3.0.0 <4.0.0'
+  pointycastle: '>=3.0.1 <4.0.0'
+
+  # --- Networking / server ---
+  path_provider: '>=2.0.1 <3.0.0'
+  crypto: '>=3.0.0 <4.0.0'
+
+  # --- QR pairing ---
+  # qr_flutter v4 (2021 H2) renamed QrImage -> QrImageView; this era used
+  # QrImage, so the constraint is capped below 4.0.0 deliberately.
+  qr_flutter: '>=3.0.1 <4.0.0'
+  # mobile_scanner didn't exist yet in this window (it's an ML-Kit-based
+  # package from later in 2021). qr_code_scanner was the standard choice
+  # at the time and uses a different widget API (QRView/QRViewController) --
+  # see connect_screen.dart.
+  qr_code_scanner: '>=0.7.0 <1.0.0'
+
+  # --- Folder picking ---
+  file_picker: '>=3.0.0 <4.0.0'
+
+  # --- Media playback ---
+  # video_player's Uri-based `.networkUrl()` constructor came later; this
+  # era uses the String-based `.network()` constructor (see
+  # player_screen.dart), which stayed available for a long time after too,
+  # so this isn't a throwaway workaround.
+  video_player: '>=2.1.0 <3.0.0'
+  just_audio: '>=0.6.0 <0.7.0'
+
+  # --- Local persistence of paired connections ---
+  shared_preferences: '>=2.0.0 <3.0.0'
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # flutter_lints didn't exist yet (introduced mid-2021). `pedantic` was
+  # the common lint set at this point if you want one; omitted here to
+  # keep this buildable without an extra unverified dependency.
+
+flutter:
+  uses-material-design: true
