@@ -46,8 +46,7 @@ dependencies:
   # era uses the String-based `.network()` constructor (see
   # player_screen.dart), which stayed available for a long time after too,
   # so this isn't a throwaway workaround.
-  video_player: '>=2.1.0 <3.0.0'
-  just_audio: '>=0.6.0 <0.7.0'
+
 
   # --- Local persistence of paired connections ---
   shared_preferences: '>=2.0.0 <3.0.0'
