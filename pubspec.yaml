@@ -36,7 +36,7 @@ dependencies:
   # package from later in 2021). qr_code_scanner was the standard choice
   # at the time and uses a different widget API (QRView/QRViewController) --
   # see connect_screen.dart.
-  qr_code_scanner: '>=0.7.0 <1.0.0'
+  qr_code_scanner: '>=0.5.0 <1.0.0'
 
   # --- Folder picking ---
   file_picker: '>=3.0.0 <4.0.0'
